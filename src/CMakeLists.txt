@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 set (project epital)
+set(CMAKE_BUILD_TYPE Release)
+set(ALSOMAKEDOCS FALSE)
 
 set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution.cpp
@@ -59,19 +61,48 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake_mod/")
 
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(VTK REQUIRED)
+include(${VTK_USE_FILE})
+
 find_package(FFTW REQUIRED)
+
 find_package(OpenMP)
+
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
-
 add_definitions( "-DARMA_USE_HDF5" )
-include(${VTK_USE_FILE})
+
+if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
+if (ALSOMAKEDOCS)
+# first we can indicate the documentation build as an option and set it to ON by default
+option(BUILD_DOC "Build documentation" ON)
+
+# check if Doxygen is installed
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+    # set input and output files
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/../docs/Doxyfile.in)
+    set(DOXYGEN_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+
+    # request to configure the file
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    message("Doxygen build started")
+
+    # note the option ALL which allows to build the docs together with the application
+    add_custom_target( doc_doxygen ALL
+        COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM )
+else (DOXYGEN_FOUND)
+  message("Doxygen need to be installed to generate the doxygen documentation")
+endif (DOXYGEN_FOUND)
+endif()
+endif()
 
 add_executable(${project} ${${project}_SOURCES} ${${project}_HEADERS} )
 target_link_libraries (${project} Eigen3::Eigen)
 target_link_libraries (${project} ${VTK_LIBRARIES})
 if(OpenMP_CXX_FOUND)
     target_link_libraries(${project} PUBLIC OpenMP::OpenMP_CXX)
-    add_definitions( "-fopenmp" )
 endif()
 target_link_libraries(${project} ${ARMADILLO_LIBRARIES})
