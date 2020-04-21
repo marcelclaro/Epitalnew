@@ -22,7 +22,7 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/lab3D.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/lab3D.cpp
 )
 
 set(${project}_HEADERS
@@ -72,5 +72,6 @@ target_link_libraries (${project} Eigen3::Eigen)
 target_link_libraries (${project} ${VTK_LIBRARIES})
 if(OpenMP_CXX_FOUND)
     target_link_libraries(${project} PUBLIC OpenMP::OpenMP_CXX)
+    add_definitions( "-fopenmp" )
 endif()
 target_link_libraries(${project} ${ARMADILLO_LIBRARIES})
