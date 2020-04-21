@@ -25,8 +25,9 @@ gnuplot to plot some results.
 
 It will be nice to have OpenMP since it has multi-thread support through it, and most of the operations scale with the number of processors.
 
-It requires [armadillo](http://arma.sourceforge.net/) and [Eigen3](http://eigen.tuxfamily.org/)(for 3d strain which needs fix now) for some linear algebra and matrix operations.
-HDF5 to treat and save data.
+It requires [armadillo](http://arma.sourceforge.net/) and [Eigen3](http://eigen.tuxfamily.org/) for some linear algebra and matrix operations.
+
+HDF5 to save structured data.
 
 
 [VTK](https://vtk.org/) is required for load some 3D models (Heterostructure3D.hpp). Sometimes is trick to install it. If you have problems, quit Heterostructure3D.hpp/Heterostructure3D.cpp files
