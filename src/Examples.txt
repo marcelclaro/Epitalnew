@@ -1,0 +1,53 @@
+
+int main(){
+
+	GaAs subs(77);
+
+	vector<Heterostructure<double>::Epilayer> layers;
+	vector<Heterostructure<double>::Epilayer> contact;
+	layers.push_back(Heterostructure<double>::Epilayer(make_shared<AlGaAs>(2,0.29),300.0_Angs));
+	layers.push_back(Heterostructure<double>::Epilayer(make_shared<InGaAs>(2,0.11),50.0_Angs));
+	layers.push_back(Heterostructure<double>::Epilayer(make_shared<AlGaAs>(2,0.29),300.0_Angs));
+	contact.push_back(Heterostructure<double>::Epilayer(make_shared<GaAs>(2),300.0_Angs));
+	contact.push_back(Heterostructure<double>::Epilayer(make_shared<GaAs>(2),300.0_Angs));
+
+	Heterostructure<double> sample(layers,contact,make_shared<GaAs>(2));
+	Grid1D<double> basegrid(sample.Begin(),sample.End(),1000);  //Create a Grid
+
+	auto func = std::mem_fn(&Heterostructure<double>::gap_L);
+	std::function<double(double)> funcpointer = std::bind(func, sample, std::placeholders::_1);
+
+
+	shared_ptr<DiscreteFunction<double,double> > test = sample.ConductionBand_gamma(basegrid);
+	shared_ptr<DiscreteFunction<double,double> >  test2 = sample.ConductionBand_L(basegrid);
+	shared_ptr<DiscreteFunction<double,double> >  test3 = sample.ConductionBand_X(basegrid);
+	shared_ptr<DiscreteFunction<double,double> >  test4 = sample.ValenceBand_HH(basegrid);
+	shared_ptr<DiscreteFunction<double,double> >  test5 = sample.ValenceBand_lH(basegrid);
+	Graphics gama(*test);
+	Graphics lpt(*test2);
+	Graphics xpt(*test3);
+	Graphics valence(*test4);
+	Graphics valence2(*test5);
+	Graphics all({&gama,&lpt,&xpt,&valence,&valence2});
+
+	all.setXrange(sample.Begin(),sample.End());
+	all.DataConvertion(energy_to_eV);
+	all.Plot();
+
+/*
+
+	Grid1D<double> basegrid(-1.0,1.0,200);
+	typedef complex<double> Complexd;
+	DiscreteFunction<Complexd,double> complexfunc(basegrid,static_cast<complex<double> (*)(const complex<double>&)>(sqrt));
+	//DiscreteFunction<double,double> complexfunc(basegrid,(double (*)(double))sqrt);
+	shared_ptr<DiscreteFunction<double,double>> ff = complexfunc.Real<>();
+	shared_ptr<DiscreteFunction<double,double>> ff2 = complexfunc.Imaginary<>();
+	Graphics pt(*ff);
+	Graphics pt2(*ff2);
+	Graphics pt3({&pt,&pt2});
+	pt3.Plot();
+
+*/
+
+	return 0;
+}
