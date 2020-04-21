@@ -211,39 +211,34 @@ template <typename T,typename gridtype>
 void DiscreteFunction2D<T,gridtype>::saveHDF5(std::string filename){
 	long int xmax=grid.getSizeX();
 	long int ymax=grid.getSizeY();
-	long int zmax=grid.getSizeZ();
 
-	arma::Cube<T> cube(xmax,ymax,zmax);
+	arma::Cube<T> datatosave(xmax,ymax);
 
 	#pragma omp for
 	for(long int k=0; k<xmax; k++){
 		for(long int l=0; l<ymax; l++){
-			for(long int m=0; m<zmax; m++){
-				cube(k,l,m)=(*this)(k,l,m);
-			}
+				datatosave(k,l)=(*this)(k,l);
 		}
 	}
 
-	cube.save(filename,arma::hdf5_binary);
+	datatosave.save(filename,arma::hdf5_binary);
 }
 
 template <typename T,typename gridtype>
 void DiscreteFunction2D<T,gridtype>::fillGaussian(T sigma, T norm){
 	for(long int k=0; k<grid.getSizeX();k++)
-		for(long int l=0; l<grid.getSizeY();l++)
-			for(long int m=0; m<grid.getSizeZ();m++){
-				T arg(-((k-grid.getSizeX()/2)*(k-grid.getSizeX()/2.0)+(l-grid.getSizeY()/2)*(l-grid.getSizeY()/2.0)+(m-grid.getSizeZ()/2)*(m-grid.getSizeZ()/2.0))/(2.0*sigma));
-				(*this)(k,l,m)=(exp(arg)*norm/2.0)+(exp(arg)*std::complex<double>(0.0,1.0)*norm/2.0);
+		for(long int l=0; l<grid.getSizeY();l++){
+				T arg(-((k-grid.getSizeX()/2)*(k-grid.getSizeX()/2.0)+(l-grid.getSizeY()/2)*(l-grid.getSizeY()/2.0))/(2.0*sigma));
+				(*this)(k,l)=(exp(arg)*norm/2.0)+(exp(arg)*std::complex<double>(0.0,1.0)*norm/2.0);
 			}
 }
 
 template <typename T,typename gridtype>
 void DiscreteFunction2D<T,gridtype>::fillGaussian2(T sigma, T norm){
 	for(long int k=0; k<grid.getSizeX();k++)
-		for(long int l=0; l<grid.getSizeY();l++)
-			for(long int m=0; m<grid.getSizeZ();m++){
-				T arg(-((k-grid.getSizeX()/2)*(k-grid.getSizeX()/2.0)+(l-grid.getSizeY()/2)*(l-grid.getSizeY()/2.0)+(m-grid.getSizeZ()/2)*(m-grid.getSizeZ()/2.0))/(2.0*sigma));
-				(*this)(k,l,m)=(k-grid.getSizeX()/2.0)*(l-grid.getSizeY()/2.0)*(m-grid.getSizeZ()/2.0)*(exp(arg)*norm/2.0)+(exp(arg)*std::complex<double>(0.0,1.0)*norm/2.0);
+		for(long int l=0; l<grid.getSizeY();l++){
+				T arg(-((k-grid.getSizeX()/2)*(k-grid.getSizeX()/2.0)+(l-grid.getSizeY()/2)*(l-grid.getSizeY()/2.0))/(2.0*sigma));
+				(*this)(k,l)=(k-grid.getSizeX()/2.0)*(l-grid.getSizeY()/2.0)*(exp(arg)*norm/2.0)+(exp(arg)*std::complex<double>(0.0,1.0)*norm/2.0);
 			}
 }
 

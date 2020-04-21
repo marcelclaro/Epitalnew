@@ -41,7 +41,6 @@
 #include "PhononScattering.hpp"
 #include "CarrierStatistics.hpp"
 
-//#include <Eigen/Dense>
 
 using namespace std;
 using namespace epital;
