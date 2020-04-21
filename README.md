@@ -61,10 +61,11 @@ If something still missing try [auto-apt](http://manpages.ubuntu.com/manpages/tr
 
 TODO
 -----------
-1. Update Docs
-2. Do test routines
-3. Improve examples
-4. VdW materials InSe, GaSe and MoSe2
+* Update Docs
+* Do test routines
+* fix the files on Fixme (o2scl?)
+* Improve examples
+* VdW materials InSe, GaSe and MoSe2
 
 
 
