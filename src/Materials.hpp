@@ -123,7 +123,7 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param composition Compositional fraction of secondary element (Aluminum) in alloy
 	 */
 	AlGaAs(Temperature temper, double composition);
 	/**
@@ -144,7 +144,7 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param composition Compositional fraction of secondary element in alloy (Indium)
 	 */
 	InGaAs(Temperature temper, double composition);
 	/**
@@ -165,7 +165,7 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param composition Compositional fraction of secondary element in alloy (Indium)
 	 */
 	InAlAs(Temperature temper, double composition);
 	/**
@@ -187,7 +187,8 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param compositionin Compositional fraction of secondary element in alloy (Indium)
+	 * @param compositional Compositional fraction of secondary element in alloy (Aluminum)
 	 */
 	InAlGaAs(Temperature temper, double compositionin, double compositional);
 	/**
@@ -197,11 +198,14 @@ public:
 	void setTemperature(Temperature temper);
 };
 
+/*
+Missing:
 class ZnCdSe;
 
 class MgZnCdSe;
 
 class CdSe;
+*/
 
 class ZnSe : public Material{
 public:
@@ -255,7 +259,7 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param compositionse Compositional fraction of secondary element in alloy (Selenium)
 	 */
 	ZnSeTe(Temperature temper, double compositionse);
 	/**
@@ -270,7 +274,7 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param compositionte Compositional fraction of secondary element in alloy (Tellerium)
 	 */
 	CdSeTe(Temperature temper, double compositionte);
 	/**
@@ -317,7 +321,7 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param compositionzn Compositional fraction of secondary element in alloy (Zinc)
 	 */
 	ZnCdSe(Temperature temper, double compositionzn);
 
@@ -333,7 +337,8 @@ public:
 	/**
 	 * Initialize all materials parameters
 	 * @param temper Initial temperature
-	 * @param composition Compositional fraction of secondary element in alloy
+	 * @param compositionzn Compositional fraction of secondary element in alloy (Zinc)
+	 * @param compositionmg Compositional fraction of secondary element in alloy (Magnesium)
 	 */
 	MgZnCdSe(Temperature temper, double compositionzn, double compositionmg);
 
