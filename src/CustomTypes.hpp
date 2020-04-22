@@ -52,7 +52,7 @@ typedef float Temperature;
 /**
  * enumeration of carrier types
  */
-enum Band{
+enum class Band{
 		Conduction, //!< Conduction
 		ConductionX,//!< ConductionX
 		ConductionL,//!< ConductionL

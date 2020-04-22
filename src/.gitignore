@@ -1,1 +1,6 @@
 .build/*
+Examples/Epital.cpp
+Examples/Examples.txt
+Examples/lab*
+Examples/PhononTest.cpp
+Examples/SolverTest.cpp

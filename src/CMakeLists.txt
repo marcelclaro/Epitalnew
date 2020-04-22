@@ -24,7 +24,7 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/lab3D.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/transfermatrix.cpp
 )
 
 set(${project}_HEADERS
