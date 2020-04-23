@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 set (project epital)
 set(CMAKE_BUILD_TYPE Release)
-set(ALSOMAKEDOCS FALSE)
+set(ALSOMAKEDOCS TRUE)
 
 set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution.cpp
@@ -24,7 +24,7 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/transfermatrix.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../test/tests.cpp
 )
 
 set(${project}_HEADERS
@@ -88,7 +88,7 @@ if (DOXYGEN_FOUND)
     message("Doxygen build started")
 
     # note the option ALL which allows to build the docs together with the application
-    add_custom_target( doc_doxygen ALL
+    add_custom_target( doc_doxygen
         COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generating API documentation with Doxygen"
@@ -99,6 +99,25 @@ endif (DOXYGEN_FOUND)
 endif()
 endif()
 
+include(ExternalProject)
+find_package(Git REQUIRED)
+
+ExternalProject_Add(
+    doctest
+    PREFIX ${CMAKE_BINARY_DIR}/doctest
+    GIT_REPOSITORY https://github.com/onqtam/doctest.git
+    TIMEOUT 10
+    UPDATE_COMMAND ${GIT_EXECUTABLE} pull
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND ""
+    INSTALL_COMMAND ""
+    LOG_DOWNLOAD ON
+)
+
+# Expose required variable (DOCTEST_INCLUDE_DIR) to parent scope
+ExternalProject_Get_Property(doctest source_dir)
+set(DOCTEST_INCLUDE_DIR ${source_dir}/doctest CACHE INTERNAL "Path to include folder for doctest")
+
 add_executable(${project} ${${project}_SOURCES} ${${project}_HEADERS} )
 target_link_libraries (${project} Eigen3::Eigen)
 target_link_libraries (${project} ${VTK_LIBRARIES})
@@ -106,3 +125,5 @@ if(OpenMP_CXX_FOUND)
     target_link_libraries(${project} PUBLIC OpenMP::OpenMP_CXX)
 endif()
 target_link_libraries(${project} ${ARMADILLO_LIBRARIES})
+
+include_directories(${DOCTEST_INCLUDE_DIR})
