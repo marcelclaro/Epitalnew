@@ -24,6 +24,7 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CarrierStatistics.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../test/tests.cpp
 )
 
@@ -54,6 +55,7 @@ set(${project}_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Solution.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SolverSO.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/BrentsRootFinder.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CarrierStatistics.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.hpp
 )
 

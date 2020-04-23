@@ -189,6 +189,7 @@ template<typename complextype, typename xType>
 template<typename yType>
 SolutionWannier<complextype,xType> SolverTM<complextype,xType>::getWannierFunctions(Heterostructure<yType>& sample, Band selectedband,SolutionPW<complextype,xType> solution,long int brillouinpoints){
 
+	cout << "WannierFunctions needs test!!!" << endl;
 	long int levels = solution.getLevels();
 	complextype period = sample.getLimitsLists().back().second-sample.getLimitsLists().front().first;
 	complextype halfunitcell = Constant::pi/period;

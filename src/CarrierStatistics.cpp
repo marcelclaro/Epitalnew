@@ -6,10 +6,10 @@
  */
 
 
-#include <CMaterial.hpp>
+#include "CMaterial.hpp"
 #include <vector>
-#include <CarrierStatistics.hpp>
-#include <Solution.hpp>
+#include "CarrierStatistics.hpp"
+#include "Solution.hpp"
 
 //#include <o2scl/funct.h>
 //#include <o2scl/root_brent_gsl.h>
@@ -263,7 +263,7 @@ complextype CarrierStatistics<complextype>::QuasiFermiEnergyWells(std::complex<c
 
 
 template<typename complextype>
-complextype CarrierStatistics<complextype>::CarriersinSubband(Temperature T, complextype subbandminima, complextype fermienergy,shared_ptr<Material> material,Band banda, complextype energytop = 20*Constant::kb*300){
+complextype CarrierStatistics<complextype>::CarriersinSubband(Temperature T, complextype subbandminima, complextype fermienergy,shared_ptr<Material> material,Band banda, complextype energytop){
 	complextype effectivemass;
 	complextype carriersignal=1.0;
 
