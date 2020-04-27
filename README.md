@@ -25,7 +25,9 @@ Examples
 -----------
 
 [Example 1: Transfer Matrix Method of GaAs/AlGaAs Quantum-well](https:/ /github.com/marcelclaro/Epitalnew/blob/master/src/Examples/transfermatrix_example.cpp)
-[Example 2(or 1B):  Split-operator method of GaAs/AlGaAs Quantum-well](https://github.com/marcelclaro/Epitalnew/blob/master/src/Examples/transfermatrix_example.cpp)
+
+[Example 2(or 1B):  Split-operator method of GaAs/AlGaAs Quantum-well](https://github.com/marcelclaro/Epitalnew/blob/master/src/Examples/splitoperator_example.cpp)
+
 Example 3:  Split-operator method of InAs Quantum-dot (WIP)
 
 
