@@ -24,7 +24,11 @@ If you want to use it extensively, please consider contribute to the documentati
 Examples
 -----------
 
+<<<<<<< HEAD
 [Example 1: Transfer Matrix Method of GaAs/AlGaAs Quantum-well](https://github.com/marcelclaro/Epitalnew/blob/master/src/Examples/transfermatrix_example.cpp)
+=======
+[Example 1: Transfer Matrix Method of GaAs/AlGaAs Quantum-well](https:/ /github.com/marcelclaro/Epitalnew/blob/master/src/Examples/transfermatrix_example.cpp)
+>>>>>>> 69391229ec8d2f5ea4f2b3a906a512acf2702bc9
 
 [Example 2(or 1B):  Split-operator method of GaAs/AlGaAs Quantum-well](https://github.com/marcelclaro/Epitalnew/blob/master/src/Examples/splitoperator_example.cpp)
 
