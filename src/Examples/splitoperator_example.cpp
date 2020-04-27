@@ -19,7 +19,7 @@
 #include "../Graphics.hpp"
 #include "../Heterostructure.hpp"
 #include "../Solution.hpp"
-#include "../SolverTM.hpp"
+#include "../SolverSO.hpp"
 
 
 using namespace std;
@@ -34,7 +34,7 @@ int main(){
 
     /*Creat a list of layers in the active region*/
     vector<Heterostructure<double>::Epilayer> layers;
-    /*Creat a list of layers also in the contacts (could be empty)*/
+    /*Creat a list of layers also in the contacts*/
     /*It is not used in most of the functions*/
     vector<Heterostructure<double>::Epilayer> contact;
 
@@ -48,8 +48,7 @@ int main(){
     Heterostructure<double> sample(layers,contact,subs,0);
 
     /*It finds the solution using plane waves base (transfer matrix method) in the conduction band*/
-    /*It looks for 4 levels from the band edge (1.42eV) to the top of the barrier, setting minimum distance of 0.001eV between the levels (degenerency prevention).*/
-    SolutionPW<double,double> solution = SolverTM<double,double>::SolvePeriodic(sample,Band::Conduction, 4, 0.001_eV,1.42_eV,1.9_eV);
+    Solution<double,double> solution = SolverSO<double,double>::SolvePeriodic(sample,Band::Conduction,1,100.0_fs);
 
 
     /*Print the number of levels found*/
@@ -68,11 +67,11 @@ int main(){
     Graphics electronpot(potential);
 
     /*create plot from plane waves*/
-    Graphics firstlevel(*solution.getWavefunction(0),1000,Graphics::Complexplot::SQUARED,solution.getEnergy(0).real());
-    Graphics secondlevel(*solution.getWavefunction(1),1000,Graphics::Complexplot::SQUARED,solution.getEnergy(1).real());
+    Graphics firstlevel(solution.getWavefunction(0)->probabilitydensity().Real()+solution.getEnergy(0).real());
+
 
     /*Join plots*/
-    Graphics allgraphs({&electronpot,&firstlevel,&secondlevel});
+    Graphics allgraphs({&electronpot,&firstlevel});
 
     /*Configure axis and plot*/
     allgraphs.setXrange(sample.Begin(),sample.End());

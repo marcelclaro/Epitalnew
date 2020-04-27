@@ -628,12 +628,12 @@ InAlGaAs::InAlGaAs(Temperature temper, double compositionin, double compositiona
 	double gapXInAs=varshini(temp,1.433_eV,0.276_meV,93);
 	double gapXAlAs=varshini(temp,2.24_eV,0.70_meV,530);
 	valencebandpos=compositionA*(0.21_eV)-compositionA*(1-compositionA)*(-0.38_eV);
-	valencebandpos=(1-compositionB)*valencebandpos+compositionB*(-0.53_eV);
+	valencebandpos=(1-compositional)*valencebandpos+compositional*(-0.53_eV);
 	gapa=0;
 	gapb=0;
 
-	gapgamma=(1-compositionin-compositionB)*gapgammaGaAs+compositionin*gapgammaInAs-compositionin*(1-compositionin)*0.477_eV
-			+compositionB*gapgammaAlAs-compositionB*(1-compositionB)*(-0.127_eV+1.310_eV*compositionB)+compositionin*compositionB*0.55_eV;
+	gapgamma=(1-compositionin-compositional)*gapgammaGaAs+compositionin*gapgammaInAs-compositionin*(1-compositionin)*0.477_eV
+			+compositional*gapgammaAlAs-compositional*(1-compositional)*(-0.127_eV+1.310_eV*compositional)+compositionin*compositional*0.55_eV;
 	gapL=(1-compositionin-compositionB)*gapLGaAs+compositionin*gapLInAs-compositionin*(1-compositionin)*1.4_eV+compositionB*gapLAlAs;
 	gapX=(1-compositionin-compositionB)*gapXGaAs+compositionin*gapXInAs-compositionin*(1-compositionin)*0.33_eV+compositionB*gapXAlAs-compositionB*(1-compositionB)*0.055_eV;
 

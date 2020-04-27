@@ -25,7 +25,7 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/CarrierStatistics.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../test/tests.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/splitoperator_example.cpp
 )
 
 set(${project}_HEADERS
