@@ -11,7 +11,6 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/DFunction3D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/DFunction2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/DFunction.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SolverSO3D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Materials.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/CMaterial.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution3D.cpp
@@ -25,6 +24,7 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/CarrierStatistics.cpp
+    #ADD HERE THE MAIN FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Examples/splitoperator_example.cpp
 )
 
@@ -46,7 +46,6 @@ set(${project}_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution2D.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/CustomTypes.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SolutionPW.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SolverSO3D.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Grid.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Heterostructure.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Heterostructure3D.hpp

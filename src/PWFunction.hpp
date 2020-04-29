@@ -63,13 +63,14 @@ namespace epital {
 template<typename complextype, typename xType>
 class SolverTM;
 
-
+/*
 template<typename complextype, typename xType>
 class DiscreteFunction;
 
 
 template<typename xType>
 class Grid1D;
+*/
 
 template<typename complextype, typename xType = double>
 class PlaneWavesFunction {

@@ -36,9 +36,7 @@
 
 
 namespace epital{
-template<typename complextype, typename xType>
-class PlaneWavesFunctions;
-}
+
 #include "PWFunction.hpp"
 
 namespace epital{

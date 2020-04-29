@@ -11,7 +11,7 @@ Currently:
   * Split-operator Method in 2D is under development.
   * Fermi-level, phonon and photon scattering on 1D heterostructures has been used in practice with some real samples but needs revisions.
 
-The method were implemented on C++11(or more recent c++) language using multi-thread and memory efficiency techniques. The use of templates guarantee the use of any precision required (float, double, long double, efloat...).
+The methods were implemented on C++11(or more recent c++) language using multi-thread and memory efficiency techniques. The use of templates guarantee the use of any precision required (float, double, long double, efloat...).
 
 
 Initially this code was focused on  III-V materials, it was expanded to II-VI. The material parameters implemented were verified by several simulations.
