@@ -1,29 +1,27 @@
 cmake_minimum_required(VERSION 2.8)
 set (project epital)
 set(CMAKE_BUILD_TYPE Release)
-set(ALSOMAKEDOCS TRUE)
 
 set(${project}_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/PerturbationMethod.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SolverTM.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/PWFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Units.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Materials.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/CMaterial.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/DFunction3D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/DFunction2D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/DFunction.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Materials.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/CMaterial.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution3D.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/PWFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution2D.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Heterostructure.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Units.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Heterostructure3D.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/SolverSO.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/WannierFunction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/WaveTimeEvolution3D.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Grid.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/Alloy.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Heterostructure.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Heterostructure3D.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/WannierFunction.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/CarrierStatistics.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SolverSO.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SolverTM.cpp
     #ADD HERE THE MAIN FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/Examples/splitoperator_example.cpp
 )
@@ -34,7 +32,6 @@ set(${project}_HEADERS
     ${CMAKE_CURRENT_SOURCE_DIR}/Solution3D.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SolutionWannier.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/WannierFunction.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/PerturbationMethod.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Graphics.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/CMaterial.hpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Constants.hpp
@@ -73,7 +70,6 @@ include_directories(${ARMADILLO_INCLUDE_DIRS})
 add_definitions( "-DARMA_USE_HDF5" )
 
 if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
-if (ALSOMAKEDOCS)
 # first we can indicate the documentation build as an option and set it to ON by default
 option(BUILD_DOC "Build documentation" ON)
 
@@ -97,7 +93,6 @@ if (DOXYGEN_FOUND)
 else (DOXYGEN_FOUND)
   message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
-endif()
 endif()
 
 include(ExternalProject)
@@ -126,5 +121,6 @@ if(OpenMP_CXX_FOUND)
     target_link_libraries(${project} PUBLIC OpenMP::OpenMP_CXX)
 endif()
 target_link_libraries(${project} ${ARMADILLO_LIBRARIES})
+
 
 include_directories(${DOCTEST_INCLUDE_DIR})

@@ -35,8 +35,6 @@
 #define WANNIERFUNCTION_HPP_
 
 
-namespace epital{
-
 #include "PWFunction.hpp"
 
 namespace epital{

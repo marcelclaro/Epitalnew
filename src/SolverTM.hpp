@@ -5,6 +5,10 @@
  *      Author: marcel
  */
 
+
+#ifndef SOLVERTM_HPP_
+#define SOLVERTM_HPP_
+
 #include <thread>
 #include <iostream>
 #include <limits>
@@ -30,14 +34,8 @@
 #include "SolutionPW.hpp"
 #include "SolutionWannier.hpp"
 
-
-
-#ifndef SOLVERTM_HPP_
-#define SOLVERTM_HPP_
-
-
-template<typename complextype, typename xType = double>
-class PlaneWavesFunction;
+/*template<typename complextype, typename xType = double>
+class PlaneWavesFunction;*/
 
 #include "PWFunction.hpp"
 
