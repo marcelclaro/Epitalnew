@@ -2,7 +2,7 @@ Epitalnew
 =======
 
 
-This is a tentative to organize, make user-friendly and open source my code in **C++** to calculate quantum levels, wavefunctions and some properties of semiconductor heterostructures, mainly grown by epitaxy. Note that it is a working in progress and some functions are constantly updated or **not tested** (so, remember to always use **git** to **clone** and **push** the most recent version).
+This is a tentative to organize, make user-friendly and open source my code in **C++** to calculate quantum levels, wavefunctions and some properties of semiconductor heterostructures, mainly grown by epitaxy. Note that it is a working in progress and some functions are constantly updated or **not tested** (so, remember to always use **git** to **clone** and **pull** the most recent version).
 
 Currently:
   * Transfer Matrix Method (TMM) in 1D was extensively tested and the results verified with real samples.
@@ -64,15 +64,35 @@ How to use
 The folder /src/Examples has some examples of tested simulations.
 
 Check: /src/Examples/transfermatrix_example.cpp
+
 It has an example how to calculate the energy and wavefunctions of an AlGaAs/GaAs quantum well.
 
 To compile:
 
 1. Create a folder inside /src with a name .build
 2. Add your code
-3. Include your main file on the CMakeLists.txt code
+3. Include your files on the CMakeLists.txt code:
+
+```CMake
+# Application:
+set(MY_SOURCES
+    #ADD HERE YOUR SOURCE FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/splitoperator_example.cpp
+)
+set(MY_HEADERS
+    ${${project}_HEADERS}
+    #ADD HERE YOUR HEADER FILES
+    #${CMAKE_CURRENT_SOURCE_DIR}/myheader...
+)
+add_executable(myapp ${MY_SOURCES} ${MY_HEADERS})
+target_link_libraries (myapp LINK_PUBLIC ${project})
+```
+
 4. Run CMake and check if all the dependencies are satisfied
-5. Run "make epital" and Good Luck!
+5. Run "make myapp" and Good Luck!
+
+(Note.: It will compile the library(labepital.a) first)
+
 
 Example:
 
@@ -82,7 +102,7 @@ cd src
 mk .build
 cd .build
 cmake ..
-make
+make myapp
 ```
 
 
@@ -97,8 +117,27 @@ sudo apt install vtk7
 ```
 If something still missing, try [auto-apt](http://manpages.ubuntu.com/manpages/trusty/man1/auto-apt.1.html)
 
-If you use Windows, start to think in use Linux :P
+If you use Windows, **start to think in use Linux :P**
 
+How to contribute
+-----------
+
+1. Clone the github repository
+2. Create a new branch
+3. Make your improvements
+4. Build the test
+
+```
+make epital_test
+```
+
+5. Execute the test to make sure everything still working
+
+```
+./epital_test
+```
+
+ 6. push your branch to the github repository
 
 TODO
 -----------

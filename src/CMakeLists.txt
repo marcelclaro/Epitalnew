@@ -22,8 +22,6 @@ set(${project}_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/CarrierStatistics.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SolverSO.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SolverTM.cpp
-    #ADD HERE THE MAIN FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/splitoperator_example.cpp
 )
 
 set(${project}_HEADERS
@@ -95,32 +93,39 @@ else (DOXYGEN_FOUND)
 endif (DOXYGEN_FOUND)
 endif()
 
-include(ExternalProject)
-find_package(Git REQUIRED)
-
-ExternalProject_Add(
-    doctest
-    PREFIX ${CMAKE_BINARY_DIR}/doctest
-    GIT_REPOSITORY https://github.com/onqtam/doctest.git
-    TIMEOUT 10
-    UPDATE_COMMAND ${GIT_EXECUTABLE} pull
-    CONFIGURE_COMMAND ""
-    BUILD_COMMAND ""
-    INSTALL_COMMAND ""
-    LOG_DOWNLOAD ON
-)
-
-# Expose required variable (DOCTEST_INCLUDE_DIR) to parent scope
-ExternalProject_Get_Property(doctest source_dir)
-set(DOCTEST_INCLUDE_DIR ${source_dir}/doctest CACHE INTERNAL "Path to include folder for doctest")
-
-add_executable(${project} ${${project}_SOURCES} ${${project}_HEADERS} )
-target_link_libraries (${project} Eigen3::Eigen)
-target_link_libraries (${project} ${VTK_LIBRARIES})
+link_libraries (Eigen3::Eigen)
+link_libraries (${VTK_LIBRARIES})
 if(OpenMP_CXX_FOUND)
-    target_link_libraries(${project} PUBLIC OpenMP::OpenMP_CXX)
+    link_libraries(OpenMP::OpenMP_CXX)
 endif()
-target_link_libraries(${project} ${ARMADILLO_LIBRARIES})
+link_libraries( ${ARMADILLO_LIBRARIES})
 
+add_library(${project} ${${project}_SOURCES} ${${project}_HEADERS} )
 
-include_directories(${DOCTEST_INCLUDE_DIR})
+# Test:
+set(TEST_SOURCES
+    #ADD HERE THE MAIN FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/../test/tests.cpp
+)
+set(TEST_HEADERS
+    ${${project}_HEADERS}
+    #ADD HERE THE TEST HEADER FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/../test/splitoperator_test.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../test/transfermatrix_test.hpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../test/doctest.h
+)
+add_executable(${project}_test ${TEST_SOURCES} ${TEST_HEADERS})
+target_link_libraries (${project}_test LINK_PUBLIC ${project})
+
+# Application:
+set(MY_SOURCES
+    #ADD HERE YOUR SOURCE FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/splitoperator_example.cpp
+)
+set(MY_HEADERS
+    ${${project}_HEADERS}
+    #ADD HERE YOUR HEADER FILES
+    #${CMAKE_CURRENT_SOURCE_DIR}/myheader
+)
+add_executable(myapp ${MY_SOURCES} ${MY_HEADERS})
+target_link_libraries (myapp LINK_PUBLIC ${project})
