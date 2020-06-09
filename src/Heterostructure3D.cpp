@@ -37,7 +37,7 @@ Heterostructure3D<TYPE>::Heterostructure3D(std::string geometryfile, std::shared
 	        dimensionz=atof(readlines.c_str());
 	      }
 	      else
-	    	  std::cout << "#dimension in Geometry file format error stupid!" << std::endl;
+	    	  std::cout << "#dimension in Geometry file format error" << std::endl;
 
 	}
 
@@ -52,7 +52,7 @@ Heterostructure3D<TYPE>::Heterostructure3D(std::string geometryfile, std::shared
 	        spacingz=atof(readlines.c_str());
 	    }
 	    else
-	        std::cout << "#spacing in Geometry file format error stupid!" << std::endl;
+	        std::cout << "#spacing in Geometry file format error" << std::endl;
 
 	}
 
@@ -663,7 +663,7 @@ Heterostructure3D<TYPE>::Heterostructure3D(std::string geometryfile, std::shared
 	          }
 	      	}
 	    	else
-	    		std::cout << "#geometrie section in geometry file format error (stupid!)" << std::endl;
+	    		std::cout << "#geometrie section in geometry file format error" << std::endl;
 
 	  	}
 

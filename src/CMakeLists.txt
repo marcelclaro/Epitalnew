@@ -67,10 +67,6 @@ find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 add_definitions( "-DARMA_USE_HDF5" )
 
-if (CMAKE_BUILD_TYPE MATCHES "^[Rr]elease")
-# first we can indicate the documentation build as an option and set it to ON by default
-option(BUILD_DOC "Build documentation" ON)
-
 # check if Doxygen is installed
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
@@ -91,7 +87,7 @@ if (DOXYGEN_FOUND)
 else (DOXYGEN_FOUND)
   message("Doxygen need to be installed to generate the doxygen documentation")
 endif (DOXYGEN_FOUND)
-endif()
+
 
 link_libraries (Eigen3::Eigen)
 link_libraries (${VTK_LIBRARIES})
@@ -120,7 +116,7 @@ target_link_libraries (${project}_test LINK_PUBLIC ${project})
 # Application:
 set(MY_SOURCES
     #ADD HERE YOUR SOURCE FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/splitoperator_example.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/transfermatrix_example.cpp
 )
 set(MY_HEADERS
     ${${project}_HEADERS}

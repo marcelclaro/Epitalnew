@@ -30,7 +30,7 @@ int main(){
     /*Create a shared pointer of a Material to be used as a substrate*/
     /*This is the standard lattice constant of the whole structure, different lattice constants will be strained*/
     /* In this case it is GaAs at 77 K*/
-    shared_ptr<Material> subs = make_shared<GaAs>(77);
+    shared_ptr<Material> subs = make_shared<InGaAs>(77,0.47);
 
     /*Creat a list of layers in the active region*/
     vector<Heterostructure<double>::Epilayer> layers;
@@ -40,7 +40,9 @@ int main(){
 
     /*Add layers to the heterostructure*/
     /*In this case it will be a quantum well*/
-    layers.push_back(Heterostructure<double>::Epilayer(make_shared<AlGaAs>(77,0.4),50.0_Angs));
+    layers.push_back(Heterostructure<double>::Epilayer(make_shared<InGaAs>(77,0.4),50.0_Angs));
+    layers.push_back(Heterostructure<double>::Epilayer(make_shared<GaAs>(77),20.0_Angs));
+    layers.push_back(Heterostructure<double>::Epilayer(make_shared<AlGaAs>(77,0.4),10.0_Angs));
     layers.push_back(Heterostructure<double>::Epilayer(make_shared<GaAs>(77),20.0_Angs));
     layers.push_back(Heterostructure<double>::Epilayer(make_shared<AlGaAs>(77,0.4),50.0_Angs));
 
@@ -66,13 +68,16 @@ int main(){
     DiscreteFunction<double,double> potential = sample.ConductionBand_gamma(basegrid);
     /*simple discrete function plot creation*/
     Graphics electronpot(potential);
+    //save as file:
+    potential.savetoFileASCII("ConductionBand_gamma.txt");
 
     /*create plot from plane waves*/
     Graphics firstlevel(*solution.getWavefunction(0),1000,Graphics::Complexplot::SQUARED,solution.getEnergy(0).real());
     Graphics secondlevel(*solution.getWavefunction(1),1000,Graphics::Complexplot::SQUARED,solution.getEnergy(1).real());
 
+
     /*Join plots*/
-    Graphics allgraphs({&electronpot,&firstlevel,&secondlevel});
+    Graphics allgraphs({&electronpot,&firstlevel,&secondlevel,&thirdlevel});
 
     /*Configure axis and plot*/
     allgraphs.setXrange(sample.Begin(),sample.End());

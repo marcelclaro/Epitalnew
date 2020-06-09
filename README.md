@@ -91,7 +91,7 @@ target_link_libraries (myapp LINK_PUBLIC ${project})
 4. Run CMake and check if all the dependencies are satisfied
 5. Run "make myapp" and Good Luck!
 
-(Note.: It will compile the library(labepital.a) first)
+(Note.: It will compile the library( "libepital.a" ) first. )
 
 
 Example:
@@ -114,6 +114,10 @@ sudo apt install libarmadillo-dev
 sudo apt install hdf5-tools
 sudo apt install libeigen3-dev
 sudo apt install vtk7
+sudo apt install libfftw3*
+sudo apt install libvtk7*
+
+
 ```
 If something still missing, try [auto-apt](http://manpages.ubuntu.com/manpages/trusty/man1/auto-apt.1.html)
 
