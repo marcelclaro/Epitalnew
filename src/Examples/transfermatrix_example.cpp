@@ -40,8 +40,6 @@ int main(){
 
     /*Add layers to the heterostructure*/
     /*In this case it will be a quantum well*/
-    layers.push_back(Heterostructure<double>::Epilayer(make_shared<InGaAs>(77,0.4),50.0_Angs));
-    layers.push_back(Heterostructure<double>::Epilayer(make_shared<GaAs>(77),20.0_Angs));
     layers.push_back(Heterostructure<double>::Epilayer(make_shared<AlGaAs>(77,0.4),10.0_Angs));
     layers.push_back(Heterostructure<double>::Epilayer(make_shared<GaAs>(77),20.0_Angs));
     layers.push_back(Heterostructure<double>::Epilayer(make_shared<AlGaAs>(77,0.4),50.0_Angs));
@@ -77,7 +75,7 @@ int main(){
 
 
     /*Join plots*/
-    Graphics allgraphs({&electronpot,&firstlevel,&secondlevel,&thirdlevel});
+    Graphics allgraphs({&electronpot,&firstlevel,&secondlevel});
 
     /*Configure axis and plot*/
     allgraphs.setXrange(sample.Begin(),sample.End());
