@@ -29,7 +29,7 @@ int main(){
 
     /*Create a shared pointer of a Material to be used as a substrate*/
     /*This is the standard lattice constant of the whole structure, different lattice constants will be strained*/
-    /* In this case it is GaAs at 77 K*/
+    /* In this case it is InGaAs at 77 K*/
     shared_ptr<Material> subs = make_shared<InGaAs>(77,0.47);
 
     /*Creat a list of layers in the active region*/

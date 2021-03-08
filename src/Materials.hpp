@@ -355,7 +355,45 @@ inline double ValenceBandOffset(const Material& mat_a,const Material& mat_b){
 }
 
 
+/**
+ * @class GaSe
+ * @brief Galium Selenide material
+ *
+ * Class for Galium Selenide material with specific material parameters
+ */
+class GaSe : public Material{
+public:
+	/**
+	 * Initialize all materials parameters
+	 * @param temper Initial temperature
+	 */
+	GaSe(Temperature temper);
+	/**
+	 * Change temperature and refresh material parameters with new values
+	 * @param temper New temperature
+	 */
+	void setTemperature(Temperature temper);
+};
 
+/**
+ * @class InSe
+ * @brief Indium Selenide material
+ *
+ * Class for Indium Selenide material with specific material parameters
+ */
+class InSe : public Material{
+public:
+	/**
+	 * Initialize all materials parameters
+	 * @param temper Initial temperature
+	 */
+	InSe(Temperature temper);
+	/**
+	 * Change temperature and refresh material parameters with new values
+	 * @param temper New temperature
+	 */
+	void setTemperature(Temperature temper);
+};
 
 
 

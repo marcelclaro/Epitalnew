@@ -1183,7 +1183,137 @@ void ZnTe::setTemperature(Temperature temper){
 	lparam=6.0882_Angs+(temp-300)*8.33e-06_Angs;  //origin/landolt
 }
 
+GaSe::GaSe(Temperature temper){
+	compositionA=0;
+	compositionB=0;
+	emass_gama=0.17; //it need review
+	emass_Lt=0.17;	//not real
+	emass_Ll=0,17;	//not real
+	emass_Xt=0.17;	//not real
+	emass_Xl=0.17;	//not real
+	emass_Ldos=0.2;	//not real
+	emass_Xdos=0.2;	//not real
 
+	lutt1=3.76;	//not real
+	lutt2=6.82;	//not real
+	lutt3=1.42;	//not real
+
+	emassHH_t=0.8; // it need review
+	emassHH_l=0.8;
+	emasslH_t=0.8;
+	emasslH_l=0.8;
+	//emassHH_l=1.09; not real
+	//emasslH_t=0.18; not real
+	//emasslH_l=0.15; not real
+
+	alpha_gamma=0.66_meV;		//it need review
+	beta_gamma=181;			//it nedd review
+	alpha_L=0;				//not real
+	beta_L=0;				//not real
+	alpha_X=0;				//not real
+	beta_X=0;				//not real
+	gapgammatzero=2.095_eV;	//it nedd review
+	gapLtzero=2.095_eV;		//not real
+	gapXtzero=2.095_eV;		//not real
+	valencebandpos=-0.85_eV;	 // it need review
+	gapa=0; 			//not real
+	gapb=0;			//not real
+
+	ac=0;	//not real
+	av=0;	//not real
+	b=0;	//not real
+
+	c11=103.1e+9_Pa;	 //it need review
+	c12=28.4e+9_Pa;	 //it need review
+	c44=9.9e+9_Pa;		 //it need review
+
+	wLO=76.0749_THz;	//not real
+	wTO=67.9818_THz;	//not real
+
+
+	dielectric0 = 10.06; 	//not real
+	dielectricinf = 8.16;	//not real
+
+	temp=temper;
+	gapgamma=varshini(temp,gapgammatzero,alpha_gamma,beta_gamma);
+	gapL=varshini(temp,gapLtzero,alpha_L,beta_L);
+	gapX=varshini(temp,gapXtzero,alpha_X,beta_X);
+	lparam=3.82_Angs; // temperature dependence?
+
+	materialname = "GaSe";
+}
+void GaSe::setTemperature(Temperature temper){
+	temp=temper;
+	gapgamma=varshini(temp,gapgammatzero,alpha_gamma,beta_gamma);
+	gapL=varshini(temp,gapLtzero,alpha_L,beta_L);
+	gapX=varshini(temp,gapXtzero,alpha_X,beta_X);
+}
+
+InSe::InSe(Temperature temper){
+	compositionA=0;
+	compositionB=0;
+	emass_gama=0.14;	// it nedd review
+	emass_Lt=0.14;		//not real
+	emass_Ll=0.14;		//not real
+	emass_Xt=0.14;		//not real
+	emass_Xl=0.14;		//not real
+	emass_Ldos=0.14;	//not real
+	emass_Xdos=0.14;	//not real
+
+	lutt1=3.76;	//not real
+	lutt2=0.82;	//not real
+	lutt3=1.42;	//not real
+
+	emassHH_t=0.74; // it need review
+	emassHH_l=0.74;
+	emasslH_t=0.74;
+	emasslH_l=0.74;
+	//emassHH_l=1.09; not real
+	//emasslH_t=0.18; not real
+	//emasslH_l=0.15; not real
+
+	alpha_gamma=0;			//not real
+	beta_gamma=0;			//not real
+	alpha_L=0;				//not real
+	beta_L=0;				//not real
+	alpha_X=0;				//not real
+	beta_X=0;				//not real
+	gapgammatzero=1.26_eV;	//not real
+	gapLtzero=1.26_eV;		//not real
+	gapXtzero=1.26_eV;		//not real
+	valencebandpos=-1.15_eV;// it need review
+	gapa=0; 				// not real
+	gapb=0;				//not real
+
+	ac=0;	//not real
+	av=0;	//not real
+	b=0;	//not real
+
+	c11=73e+9_Pa;		//it need review
+	c12=27e+9_Pa;		//it need review
+	c44=11.7e+9_Pa;	//it need review
+
+	wLO=76.0749_THz;	//not real
+	wTO=67.9818_THz;	//not real
+
+
+	dielectric0 = 10.06; 	//not real
+	dielectricinf = 8.16;	//not real
+
+	temp=temper;
+	gapgamma=varshini(temp,gapgammatzero,alpha_gamma,beta_gamma);
+	gapL=varshini(temp,gapLtzero,alpha_L,beta_L);
+	gapX=varshini(temp,gapXtzero,alpha_X,beta_X);
+	lparam=4.09_Angs; // it need review and temperature dependece?
+
+	materialname = "InSe";
+}
+void InSe::setTemperature(Temperature temper){
+	temp=temper;
+	gapgamma=varshini(temp,gapgammatzero,alpha_gamma,beta_gamma);
+	gapL=varshini(temp,gapLtzero,alpha_L,beta_L);
+	gapX=varshini(temp,gapXtzero,alpha_X,beta_X);
+}
 
 /*
 Bi2Se3::Bi2Se3(Temperature temper){
