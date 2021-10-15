@@ -1188,7 +1188,7 @@ GaSe::GaSe(Temperature temper){
 	compositionB=0;
 	emass_gama=0.17; //it need review
 	emass_Lt=0.17;	//not real
-	emass_Ll=0,17;	//not real
+	emass_Ll=0.17;	//not real
 	emass_Xt=0.17;	//not real
 	emass_Xl=0.17;	//not real
 	emass_Ldos=0.2;	//not real
@@ -1219,8 +1219,8 @@ GaSe::GaSe(Temperature temper){
 	gapa=0; 			//not real
 	gapb=0;			//not real
 
-	ac=0;	//not real
-	av=0;	//not real
+	ac=9.0_eV;
+	av=2.0_eV;
 	b=0;	//not real
 
 	c11=103.1e+9_Pa;	 //it need review
@@ -1238,7 +1238,7 @@ GaSe::GaSe(Temperature temper){
 	gapgamma=varshini(temp,gapgammatzero,alpha_gamma,beta_gamma);
 	gapL=varshini(temp,gapLtzero,alpha_L,beta_L);
 	gapX=varshini(temp,gapXtzero,alpha_X,beta_X);
-	lparam=3.82_Angs; // temperature dependence?
+	lparam=3.77_Angs; // temperature dependence?
 
 	materialname = "GaSe";
 }
@@ -1272,21 +1272,21 @@ InSe::InSe(Temperature temper){
 	//emasslH_t=0.18; not real
 	//emasslH_l=0.15; not real
 
-	alpha_gamma=0;			//not real
-	beta_gamma=0;			//not real
+	alpha_gamma=0.475_meV;			//not real
+	beta_gamma=224;			//not real
 	alpha_L=0;				//not real
 	beta_L=0;				//not real
 	alpha_X=0;				//not real
 	beta_X=0;				//not real
-	gapgammatzero=1.26_eV;	//not real
-	gapLtzero=1.26_eV;		//not real
-	gapXtzero=1.26_eV;		//not real
-	valencebandpos=-1.15_eV;// it need review
+	gapgammatzero=1.34_eV;	//not real
+	gapLtzero=1.34_eV;		//not real
+	gapXtzero=1.34_eV;		//not real
+	valencebandpos=-1.02_eV;// it need review
 	gapa=0; 				// not real
 	gapb=0;				//not real
 
-	ac=0;	//not real
-	av=0;	//not real
+	ac=5.3_eV;
+	av=2.3_eV;
 	b=0;	//not real
 
 	c11=73e+9_Pa;		//it need review
@@ -1304,7 +1304,7 @@ InSe::InSe(Temperature temper){
 	gapgamma=varshini(temp,gapgammatzero,alpha_gamma,beta_gamma);
 	gapL=varshini(temp,gapLtzero,alpha_L,beta_L);
 	gapX=varshini(temp,gapXtzero,alpha_X,beta_X);
-	lparam=4.09_Angs; // it need review and temperature dependece?
+	lparam=3.93_Angs; // it need review and temperature dependece?
 
 	materialname = "InSe";
 }
@@ -1313,6 +1313,73 @@ void InSe::setTemperature(Temperature temper){
 	gapgamma=varshini(temp,gapgammatzero,alpha_gamma,beta_gamma);
 	gapL=varshini(temp,gapLtzero,alpha_L,beta_L);
 	gapX=varshini(temp,gapXtzero,alpha_X,beta_X);
+}
+
+InGaSe::InGaSe(Temperature temper, double composition){
+	compositionA=composition;
+	compositionB=0;
+	emass_gama=(1-compositionA)*0.17+compositionA*0.14;
+	emass_Lt=(1-compositionA)*0.17+compositionA*0.14;
+	emass_Ll=(1-compositionA)*0.17+compositionA*0.14;
+	emass_Xt=(1-compositionA)*0.17+compositionA*0.14;
+	emass_Xl=(1-compositionA)*0.17+compositionA*0.14;
+	emass_Ldos=(1-compositionA)*0.2+compositionA*0.14;
+	emass_Xdos=(1-compositionA)*0.2+compositionA*0.14;
+
+
+	emassHH_t=(1-compositionA)*0.8+compositionA*0.74;
+	emassHH_l=(1-compositionA)*0.8+compositionA*0.74;
+	emasslH_t=(1-compositionA)*0.8+compositionA*0.74;
+	emasslH_l=(1-compositionA)*0.8+compositionA*0.74;
+
+	ac=(1-compositionA)*(9.0_eV)+compositionA*(-2.0_eV);
+	av=(1-compositionA)*(5.3_eV)+compositionA*(-2.3_eV);
+	b=0;
+
+	c11=(1-compositionA)*(103.1e+9_Pa)+compositionA*(73e+9_Pa);
+	c12=(1-compositionA)*(28.4e+9_Pa)+compositionA*(27e+9_Pa);
+	c44=(1-compositionA)*(9.9e+9_Pa)+compositionA*(11.7e+9_Pa);
+
+
+	wLO=(1-compositionA)*(76.0749_THz)+compositionA*(67.9818_THz);
+	wTO=(1-compositionA)*(76.0749_THz)+compositionA*(67.9818_THz);
+
+	dielectric0 = (1-compositionA)*(10.06)+compositionA*(10.06);
+	dielectricinf = (1-compositionA)*(8.16)+compositionA*(8.16);
+
+	temp=temper;
+	double gapgammaGaSe=varshini(temp,2.095_eV,0.66_meV,181);
+	double gapgammaInSe=varshini(temp,1.34_eV,0.475_meV,224);
+	double	gapLGaSe=varshini(temp,2.095_eV,0.66_meV,181);
+	double	gapLInSe=varshini(temp,1.34_eV,0.475_meV,224);
+	double gapXGaSe=varshini(temp,2.095_eV,0.66_meV,181);
+	double gapXInSe=varshini(temp,1.34_eV,0.475_meV,224);
+	valencebandpos=(1-compositionA)*(-0.85_eV)+compositionA*(-1.02_eV);
+	gapa=0;
+	gapb=0;
+
+	gapgamma=(1-compositionA)*gapgammaGaSe+compositionA*gapgammaInSe;
+	gapL=(1-compositionA)*gapLGaSe+compositionA*gapLInSe;
+	gapX=(1-compositionA)*gapXGaSe+compositionA*gapXInSe;
+
+	lparam=(1-compositionA)*3.77_Angs+compositionA*3.93_Angs;
+
+	materialname = "InGaSe";
+
+}
+void InGaSe::setTemperature(Temperature temper){
+	temp=temper;
+	double gapgammaGaSe=varshini(temp,2.095_eV,0.66_meV,181);
+	double gapgammaInSe=varshini(temp,1.34_eV,0.475_meV,224);
+	double	gapLGaSe=varshini(temp,2.095_eV,0.66_meV,181);
+	double	gapLInSe=varshini(temp,1.34_eV,0.475_meV,224);
+	double gapXGaSe=varshini(temp,2.095_eV,0.66_meV,181);
+	double gapXInSe=varshini(temp,1.34_eV,0.475_meV,224);
+
+	gapgamma=(1-compositionA)*gapgammaGaSe+compositionA*gapgammaInSe;
+	gapL=(1-compositionA)*gapLGaSe+compositionA*gapLInSe;
+	gapX=(1-compositionA)*gapXGaSe+compositionA*gapXInSe;
+
 }
 
 /*

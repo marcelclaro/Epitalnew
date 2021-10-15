@@ -395,7 +395,26 @@ public:
 	void setTemperature(Temperature temper);
 };
 
-
+/**
+ * @class InGaSe
+ * @brief Aluminium Galium Selenide material
+ *
+ * Class for Indium Galium Selenide material with specific material parameters
+ */
+class InGaSe : public Material{
+public:
+	/**
+	 * Initialize all materials parameters
+	 * @param temper Initial temperature
+	 * @param composition Compositional fraction of secondary element (Indium) in alloy
+	 */
+	InGaSe(Temperature temper, double composition);
+	/**
+	 * Change temperature and refresh material parameters with new values
+	 * @param temper New temperature
+	 */
+	void setTemperature(Temperature temper);
+};
 
 
 

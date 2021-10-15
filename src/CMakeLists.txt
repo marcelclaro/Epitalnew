@@ -116,7 +116,7 @@ target_link_libraries (${project}_test LINK_PUBLIC ${project})
 # Application:
 set(MY_SOURCES
     #ADD HERE YOUR SOURCE FILES
-    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/transfermatrix_example.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/Examples/transfermatrix_PTMCexample.cpp
 )
 set(MY_HEADERS
     ${${project}_HEADERS}
